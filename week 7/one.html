@@ -12,7 +12,7 @@ alert("Welcome " + citizenName + " to the Smart City Information Portal!");
 // 3. Accepts the citizen's ward number
 var wardNumber = parseInt(prompt("Enter your ward number:"));
 
-// 4. Checks whether the entered ward number is valid (Valid ward numbers are 1 to 50)
+// 4. Checks whether the entered ward number is valid. Assume valid ward numbers are 1 to 50.
 var wardStatus = "";
 if (wardNumber >= 1 && wardNumber <= 50) {
     wardStatus = "Ward " + wardNumber + " is a valid ward number.";
@@ -52,88 +52,3 @@ var summaryMessage = "Citizen Information Summary:\n\n" +
     "Total Units Consumed: " + unitsConsumed + " units";
 
 alert(summaryMessage);
-
-
-// Function to process information using HTML Form input/output elements
-function processCitizenPortal() {
-    // Accepts the citizen's name and age
-    var name = document.getElementById("citizenName").value;
-    var age = parseInt(document.getElementById("citizenAge").value);
-
-    // Displays a personalized welcome message to the citizen
-    document.getElementById("outputWelcome").innerHTML = "<h4>Welcome, " + name + "!</h4><p>Welcome to the Smart City Information Portal.</p>";
-
-    // Accepts the citizen's ward number
-    var ward = parseInt(document.getElementById("wardNumber").value);
-
-    // Checks whether the entered ward number is valid (1 to 50)
-    var wardMsg = "";
-    if (ward >= 1 && ward <= 50) {
-        wardMsg = "Ward " + ward + " is a valid ward.";
-        document.getElementById("outputWard").innerHTML = "<span class=\"badge badge-success\">Valid (Ward " + ward + ")</span>";
-    } else {
-        wardMsg = "Ward " + ward + " is invalid. Valid ward numbers are 1 to 50.";
-        document.getElementById("outputWard").innerHTML = "<span class=\"badge badge-danger\">Invalid (Ward " + ward + ")</span>";
-    }
-    document.getElementById("outputWardMsg").textContent = wardMsg;
-
-    // Determines whether citizen is eligible for Senior Citizen Service (Age >= 60)
-    var seniorMsg = "";
-    if (age >= 60) {
-        seniorMsg = "Eligible for Senior Citizen Service.";
-        document.getElementById("outputSenior").innerHTML = "<span class=\"badge badge-success\">Eligible</span>";
-    } else {
-        seniorMsg = "Not Eligible for Senior Citizen Service.";
-        document.getElementById("outputSenior").innerHTML = "<span class=\"badge badge-info\">Not Eligible</span>";
-    }
-    document.getElementById("outputSeniorMsg").textContent = seniorMsg;
-
-    // Accepts two monthly water-meter readings and calculates units consumed
-    var prev = parseFloat(document.getElementById("prevReading").value);
-    var curr = parseFloat(document.getElementById("currReading").value);
-    var units = curr - prev;
-
-    // Displays the calculated water consumption
-    document.getElementById("outputWater").innerHTML = "<span class=\"badge badge-info\">" + units.toFixed(1) + " Units</span>";
-    document.getElementById("outputWaterSummary").innerHTML =
-        "<p>Previous Reading: " + prev.toFixed(1) + " KL</p>" +
-        "<p>Current Reading: " + curr.toFixed(1) + " KL</p>" +
-        "<p>Water Units Consumed: " + units.toFixed(1) + " Units</p>";
-
-    // Displays output section
-    document.getElementById("resultSection").style.display = "block";
-}
-
-// Function to run prompt-based interaction from the portal page
-function runPromptAssistant() {
-    var name = prompt("Enter citizen name:");
-    if (!name) return;
-    var age = parseInt(prompt("Enter citizen age:"));
-    alert("Welcome " + name + " to the Smart City Information Portal!");
-
-    var ward = parseInt(prompt("Enter your ward number:"));
-    if (ward >= 1 && ward <= 50) {
-        alert("Ward " + ward + " is a valid ward number.");
-    } else {
-        alert("Ward " + ward + " is an invalid ward number. (Valid wards: 1 to 50)");
-    }
-
-    if (age >= 60) {
-        alert("Eligible for Senior Citizen Service.");
-    } else {
-        alert("Not Eligible for Senior Citizen Service.");
-    }
-
-    var prev = parseFloat(prompt("Enter previous month water-meter reading:"));
-    var curr = parseFloat(prompt("Enter current month water-meter reading:"));
-    var units = curr - prev;
-
-    alert("Calculated Water Consumption: " + units + " units");
-
-    alert("Citizen Information Summary:\n" +
-        "Name: " + name + "\n" +
-        "Age: " + age + "\n" +
-        "Ward: " + ward + "\n" +
-        "Senior Citizen Status: " + (age >= 60 ? "Eligible" : "Not Eligible") + "\n" +
-        "Units Consumed: " + units);
-}
