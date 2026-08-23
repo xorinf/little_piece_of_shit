@@ -1,0 +1,376 @@
+/* External CSS (styles.css) */
+body {
+    background: linear-gradient(135deg, #e8f0fe, #b8d4f0);
+    background-attachment: fixed;
+    color: #2c3e50;
+    font-family: Georgia, serif;
+    font-size: 16px;
+    line-height: 1.7;
+    margin: 0;
+    padding: 20px 40px;
+}
+h1, h2, h3 { font-family: Verdana, sans-serif; color: #003366; }
+h2 { text-align: center; text-transform: uppercase; letter-spacing: 2px; border-bottom: 3px solid #0055a5; padding-bottom: 10px; margin-bottom: 15px; }
+h3 { font-variant: small-caps; color: #0055a5; }
+header { background: linear-gradient(to right, #003366, #0055a5, #003366); color: white; padding: 20px; text-align: center; border-radius: 10px; margin-bottom: 5px; }
+header b { color: white; }
+header p { color: #cce0ff; }
+header span i { color: #ffd700; }
+nav { background-color: #002244; padding: 12px; text-align: center; border-radius: 8px; margin-bottom: 20px; }
+nav a { color: white; text-decoration: none; padding: 8px 18px; font-weight: bold; font-size: 14px; text-transform: uppercase; border-radius: 4px; transition: background-color 0.3s ease, color 0.3s ease; display: inline-block; }
+nav a:link { color: white; }
+nav a:visited { color: #cce0ff; }
+nav a:hover { background-color: #ffd700; color: #003366; }
+nav a:active { background-color: #ff6600; color: white; }
+section { background-color: white; border: 2px solid #cce0ff; border-left: 5px solid #003366; border-radius: 10px; padding: 25px; margin-bottom: 20px; box-shadow: 0 3px 8px rgba(0,0,0,0.1); }
+article { background-color: #fffff0; border: 2px solid #e6cc00; border-left: 5px solid #ffd700; border-radius: 10px; padding: 25px; margin-bottom: 20px; }
+aside { background-color: #fff5f5; border: 2px solid #ff4d4d; border-left: 5px solid #cc0000; border-radius: 10px; padding: 25px; margin-bottom: 20px; }
+p { margin-bottom: 10px; text-align: justify; }
+section > p::first-line { font-weight: bold; color: #003366; }
+article > p:first-of-type::first-letter { font-size: 2em; font-weight: bold; color: #cc8800; float: left; margin-right: 5px; }
+.highlight::after { content: " *"; color: #ffd700; }
+section h2::before { content: ">> "; color: #0055a5; }
+aside h2 { color: #cc0000; }
+b.highlight { color: #cc8800; background-color: #fff8e0; padding: 1px 5px; border-radius: 3px; }
+::selection { background-color: #003366; color: #ffd700; }
+ul { list-style-type: square; padding-left: 30px; margin: 10px 0; }
+ul li { padding: 5px 0; border-bottom: 1px dotted #cce0ff; }
+ul li:nth-child(odd) { color: #003366; }
+ul li:nth-child(even) { color: #0055a5; }
+ul li:last-child { border-bottom: none; }
+ol { list-style-type: upper-roman; padding-left: 40px; margin: 10px 0; }
+ol li { padding: 6px 0; color: #003366; border-bottom: 1px dashed #cce0ff; }
+ol li:last-child { border-bottom: none; }
+table { width: 100%; border-collapse: collapse; margin: 15px 0; }
+th { background-color: #003366; color: white; text-transform: uppercase; padding: 12px; text-align: left; }
+td { padding: 10px 12px; border-bottom: 1px solid #e0e0e0; }
+tr:nth-child(even) { background-color: #f0f7ff; }
+tr:hover { background-color: #dce8f5; }
+a:link { color: #003366; text-decoration: none; }
+a:visited { color: #660066; }
+a:hover { color: #ff6600; text-decoration: underline; }
+a:active { color: #cc0000; }
+footer { background: linear-gradient(to right, #003366, #0055a5, #003366); color: white; text-align: center; padding: 15px; border-radius: 10px; margin-top: 10px; }
+footer p { color: #cce0ff; text-align: center; }
+footer i { color: #ffd700; }
+.gallery-item { display: inline-block; margin: 15px; vertical-align: top; text-align: center; border: 2px solid #cce0ff; border-radius: 8px; padding: 10px; }
+img { border-radius: 8px; }
+nav a:link, nav a:visited { color: white; text-decoration: none; }
+.status { font-weight: bold; color: #003366; background-color: #e6f0ff; padding: 2px 8px; border-radius: 4px; }
+.contact-link { color: #003366; font-weight: bold; }
+
+
+<!-- PAGE 1: index.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart City - Home</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .highlight { color: #003366; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <header>
+        <div style="text-align:center;">
+            <img src="logo.png" alt="Smart City Logo" width="100" height="100" style="vertical-align:middle;">
+            <span style="vertical-align:middle;">
+                <b style="font-size:28px;">SMART CITY INFORMATION PORTAL</b>
+            </span>
+            <p><span class="highlight"><i>"Building Tomorrow, Today"</i></span></p>
+        </div>
+    </header>
+    <nav>
+        <a href="index.html">Home</a> &nbsp; | &nbsp;
+        <a href="services.html">Services</a> &nbsp; | &nbsp;
+        <a href="tourism.html">Tourism</a> &nbsp; | &nbsp;
+        <a href="gallery.html">Gallery</a> &nbsp; | &nbsp;
+        <a href="contact.html">Contact</a>
+    </nav>
+    <section>
+        <h2>Welcome to Our Smart City</h2>
+        <div style="text-align:center;">
+            <div style="display:inline-block; vertical-align:top; margin:10px;">
+                <img src="city.png" alt="Smart City Skyline" width="350" style="border-radius: 8px;">
+            </div>
+            <div style="display:inline-block; vertical-align:top; margin:10px; text-align:left; max-width:400px;">
+                <p>Our Smart City integrates technology, sustainability, and citizen welfare to provide an exceptional quality of life for over 2 million residents.</p>
+                <h3>Quick Facts</h3>
+                <ul>
+                    <li>Area: 450 sq. km</li>
+                    <li>Population: 2.1 Million</li>
+                    <li>Green Cover: 35%</li>
+                    <li>Smart Zones: 12</li>
+                    <li>WiFi Hotspots: 500+</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+    <article>
+        <h2>Latest News</h2>
+        <h3>Smart City Wins National Award for Urban Development</h3>
+        <p><small>Published on: <time datetime="2026-07-20">July 20, 2026</time></small></p>
+        <p>Our Smart City has been awarded the <b class="highlight">National Excellence Award</b> for outstanding urban development and 100% digital governance.</p>
+    </article>
+    <footer>
+        <p align="center">&copy; 2026 Smart City Municipal Corporation. All Rights Reserved. &reg;</p>
+        <p align="center"><small>Designed using HTML5 &amp; CSS | <span><i>Powered by Smart City Initiative</i></span></small></p>
+    </footer>
+</body>
+</html>
+
+
+<!-- PAGE 2: services.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart City - Services</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .status { font-weight: bold; color: #003366; }
+    </style>
+</head>
+<body>
+    <header>
+        <div style="text-align:center;">
+            <img src="logo.png" alt="Smart City Logo" width="100" height="100" style="vertical-align:middle;">
+            <span style="vertical-align:middle;">
+                <b style="font-size:28px;">SMART CITY INFORMATION PORTAL</b>
+            </span>
+            <p><span><b><i>"Building Tomorrow, Today"</i></b></span></p>
+        </div>
+    </header>
+    <nav>
+        <a href="index.html">Home</a> &nbsp; | &nbsp;
+        <a href="services.html">Services</a> &nbsp; | &nbsp;
+        <a href="tourism.html">Tourism</a> &nbsp; | &nbsp;
+        <a href="gallery.html">Gallery</a> &nbsp; | &nbsp;
+        <a href="contact.html">Contact</a>
+    </nav>
+    <section>
+        <h2>Public Services</h2>
+        <p>The Municipal Corporation provides the following services to all citizens through digital and offline channels:</p>
+        <div>
+            <h3>Available Services</h3>
+            <ul>
+                <li>Water Supply &amp; Sewage Management</li>
+                <li>Waste Collection &amp; Recycling</li>
+                <li>Public Transportation (Smart Bus &amp; Metro)</li>
+                <li>Street Lighting &amp; Road Maintenance</li>
+                <li>Online Property Tax Payment</li>
+                <li>Digital Birth &amp; Death Certificates</li>
+            </ul>
+        </div>
+        <div>
+            <h3>Service Hours</h3>
+            <table>
+                <tr><th>Service</th><th>Weekdays</th><th>Weekends</th></tr>
+                <tr><td>Municipal Office</td><td>9:00 AM - 5:00 PM</td><td style="color: red; font-weight: bold;">Closed</td></tr>
+                <tr><td>Helpline (108)</td><td colspan="2" style="text-align: center; font-weight: bold; color: green;">24 x 7</td></tr>
+                <tr><td>Online Portal</td><td colspan="2" style="text-align: center; font-weight: bold; color: green;">24 x 7</td></tr>
+            </table>
+        </div>
+    </section>
+    <section>
+        <h2>Development Projects</h2>
+        <table>
+            <caption style="font-weight: bold; margin-bottom: 5px; color: #003366;">Ongoing Smart City Projects</caption>
+            <tr><th>S.No.</th><th>Project Name</th><th>Status</th><th>Budget (&#8377; Crores)</th></tr>
+            <tr><td>1</td><td>Smart Traffic Management System</td><td><span class="status">In Progress</span></td><td>150</td></tr>
+            <tr><td>2</td><td>Solar Power Grid Installation</td><td><span class="status">Completed</span></td><td>200</td></tr>
+            <tr><td>3</td><td>Metro Rail Phase 2</td><td><span class="status">In Progress</span></td><td>1200</td></tr>
+            <tr><td>4</td><td>Digital Surveillance Network</td><td><span class="status">Planning</span></td><td>80</td></tr>
+        </table>
+    </section>
+    <aside style="border-color: red;">
+        <h2 style="color: red;">Emergency Contacts</h2>
+        <table>
+            <tr style="background-color: red; color: white;"><th style="background-color: red; color: white;">Service</th><th style="background-color: red; color: white;">Number</th></tr>
+            <tr><td>Police</td><td><b style="color: red;">100</b></td></tr>
+            <tr><td>Fire Station</td><td><b style="color: red;">101</b></td></tr>
+            <tr><td>Ambulance</td><td><b style="color: red;">108</b></td></tr>
+            <tr><td>Disaster Management</td><td><b style="color: red;">112</b></td></tr>
+            <tr><td>Women Helpline</td><td><b style="color: red;">181</b></td></tr>
+        </table>
+    </aside>
+    <footer>
+        <p align="center">&copy; 2026 Smart City Municipal Corporation. All Rights Reserved. &reg;</p>
+        <p align="center"><small>Designed using HTML5 &amp; CSS | <span><i>Powered by Smart City Initiative</i></span></small></p>
+    </footer>
+</body>
+</html>
+
+
+<!-- PAGE 3: tourism.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart City - Tourism</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        ol li { padding: 4px 0; color: #003366; }
+    </style>
+</head>
+<body>
+    <header>
+        <div style="text-align:center;">
+            <img src="logo.png" alt="Smart City Logo" width="100" height="100" style="vertical-align:middle;">
+            <span style="vertical-align:middle;">
+                <b style="font-size:28px;">SMART CITY INFORMATION PORTAL</b>
+            </span>
+            <p><span><b><i>"Building Tomorrow, Today"</i></b></span></p>
+        </div>
+    </header>
+    <nav>
+        <a href="index.html">Home</a> &nbsp; | &nbsp;
+        <a href="services.html">Services</a> &nbsp; | &nbsp;
+        <a href="tourism.html">Tourism</a> &nbsp; | &nbsp;
+        <a href="gallery.html">Gallery</a> &nbsp; | &nbsp;
+        <a href="contact.html">Contact</a>
+    </nav>
+    <section>
+        <h2>Tourist Places</h2>
+        <p align="center"><img src="tourist.png" alt="Heritage Fort - Tourist Attraction" width="500" style="border-radius: 8px;"></p>
+        <p>Our city boasts a rich history and offers several tourist attractions that blend heritage with modernity.</p>
+        <ol>
+            <li><b>Heritage Fort</b> &mdash; A 16th-century fort with stunning architecture</li>
+            <li><b>City Museum</b> &mdash; Showcasing 500 years of city history</li>
+            <li><b>Botanical Garden</b> &mdash; Home to 1000+ plant species</li>
+            <li><b>Tech Park</b> &mdash; Interactive science and technology center</li>
+            <li><b>Lakeside Promenade</b> &mdash; Evening walks with city views</li>
+        </ol>
+    </section>
+    <section>
+        <h2>How to Reach</h2>
+        <div><h3>By Air</h3><p>Smart City International Airport is located 15 km from the city center with regular flights to all major cities.</p></div>
+        <div><h3>By Train</h3><p>Smart City Junction is well connected to major cities. Express and Superfast trains are available daily.</p></div>
+        <div><h3>By Road</h3><p>National Highway NH-44 passes through the city. State-run and private buses operate from the central bus stand.</p></div>
+    </section>
+    <footer>
+        <p align="center">&copy; 2026 Smart City Municipal Corporation. All Rights Reserved. &reg;</p>
+        <p align="center"><small>Designed using HTML5 &amp; CSS | <span><i>Powered by Smart City Initiative</i></span></small></p>
+    </footer>
+</body>
+</html>
+
+
+<!-- PAGE 4: gallery.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart City - Gallery</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .gallery-item { display: inline-block; margin: 10px; vertical-align: top; }
+    </style>
+</head>
+<body>
+    <header>
+        <div style="text-align:center;">
+            <img src="logo.png" alt="Smart City Logo" width="100" height="100" style="vertical-align:middle;">
+            <span style="vertical-align:middle;">
+                <b style="font-size:28px;">SMART CITY INFORMATION PORTAL</b>
+            </span>
+            <p><span><b><i>"Building Tomorrow, Today"</i></b></span></p>
+        </div>
+    </header>
+    <nav>
+        <a href="index.html">Home</a> &nbsp; | &nbsp;
+        <a href="services.html">Services</a> &nbsp; | &nbsp;
+        <a href="tourism.html">Tourism</a> &nbsp; | &nbsp;
+        <a href="gallery.html">Gallery</a> &nbsp; | &nbsp;
+        <a href="contact.html">Contact</a>
+    </nav>
+    <section>
+        <h2>City Gallery</h2>
+        <h3>City Images</h3>
+        <div style="text-align:center;">
+            <div class="gallery-item">
+                <img src="city.png" alt="Smart City Skyline" width="350" style="border-radius: 8px;"><br>
+                <small><i>Smart City Skyline at Sunset</i></small>
+            </div>
+            <div class="gallery-item">
+                <img src="tourist.png" alt="Heritage Fort" width="350" style="border-radius: 8px;"><br>
+                <small><i>Heritage Fort - Tourist Destination</i></small>
+            </div>
+        </div>
+    </section>
+    <section>
+        <h3>Welcome Audio Message</h3>
+        <p>Listen to the Mayor's welcome message:</p>
+        <audio controls style="width: 100%; max-width: 400px;"><source src="welcome.mp3" type="audio/mpeg">Your browser does not support the audio element.</audio>
+    </section>
+    <section>
+        <h3>City Promotional Video</h3>
+        <p>Watch our city's promotional video:</p>
+        <video width="500" controls style="max-width: 100%; border-radius: 8px;"><source src="promo.mp4" type="video/mp4">Your browser does not support the video element.</video>
+    </section>
+    <footer>
+        <p align="center">&copy; 2026 Smart City Municipal Corporation. All Rights Reserved. &reg;</p>
+        <p align="center"><small>Designed using HTML5 &amp; CSS | <span><i>Powered by Smart City Initiative</i></span></small></p>
+    </footer>
+</body>
+</html>
+
+
+<!-- PAGE 5: contact.html -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart City - Contact</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .contact-link { color: #003366; font-weight: bold; }
+    </style>
+</head>
+<body>
+    <header>
+        <div style="text-align:center;">
+            <img src="logo.png" alt="Smart City Logo" width="100" height="100" style="vertical-align:middle;">
+            <span style="vertical-align:middle;">
+                <b style="font-size:28px;">SMART CITY INFORMATION PORTAL</b>
+            </span>
+            <p><span><b><i>"Building Tomorrow, Today"</i></b></span></p>
+        </div>
+    </header>
+    <nav>
+        <a href="index.html">Home</a> &nbsp; | &nbsp;
+        <a href="services.html">Services</a> &nbsp; | &nbsp;
+        <a href="tourism.html">Tourism</a> &nbsp; | &nbsp;
+        <a href="gallery.html">Gallery</a> &nbsp; | &nbsp;
+        <a href="contact.html">Contact</a>
+    </nav>
+    <section>
+        <h2>Contact Us</h2>
+        <p><b>Address:</b> Municipal Corporation Head Office, MG Road, Smart City - 500001</p>
+        <p><b>Phone:</b> <span style="color: #003366; font-weight: bold;">+91&nbsp;98765&nbsp;43210</span></p>
+        <p><b>Email:</b> <a href="mailto:info@smartcity.gov.in" class="contact-link">info@smartcity.gov.in</a></p>
+        <p><b>Website:</b> <a href="https://www.smartcity.gov.in" target="_blank" class="contact-link">www.smartcity.gov.in</a></p>
+    </section>
+    <aside style="border-color: red;">
+        <h2 style="color: red;">Emergency Contacts</h2>
+        <table>
+            <tr style="background-color: red; color: white;"><th style="background-color: red; color: white;">Service</th><th style="background-color: red; color: white;">Number</th></tr>
+            <tr><td>Police</td><td><b style="color: red;">100</b></td></tr>
+            <tr><td>Fire Station</td><td><b style="color: red;">101</b></td></tr>
+            <tr><td>Ambulance</td><td><b style="color: red;">108</b></td></tr>
+            <tr><td>Disaster Management</td><td><b style="color: red;">112</b></td></tr>
+            <tr><td>Women Helpline</td><td><b style="color: red;">181</b></td></tr>
+        </table>
+    </aside>
+    <footer>
+        <p align="center">&copy; 2026 Smart City Municipal Corporation. All Rights Reserved. &reg;</p>
+        <p align="center"><small>Designed using HTML5 &amp; CSS | <span><i>Powered by Smart City Initiative</i></span></small></p>
+    </footer>
+</body>
+</html>

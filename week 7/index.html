@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart City - Home & Citizen Portal</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .highlight {
+            color: #003366;
+            font-weight: bold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div style="text-align:center;">
+            <img src="logo.png" alt="Smart City Logo" width="100" height="100" style="vertical-align:middle;">
+            <span style="vertical-align:middle;">
+                <b style="font-size:28px;">SMART CITY INFORMATION PORTAL</b>
+            </span>
+            <p><span class="highlight"><i>"Building Tomorrow, Today"</i></span></p>
+        </div>
+    </header>
+
+    <nav>
+        <a href="index.html">Home</a> &nbsp; | &nbsp;
+        <a href="services.html">Services</a> &nbsp; | &nbsp;
+        <a href="tourism.html">Tourism</a> &nbsp; | &nbsp;
+        <a href="gallery.html">Gallery</a> &nbsp; | &nbsp;
+        <a href="contact.html">Contact</a>
+    </nav>
+
+    <!-- WEEK 7: INTERACTIVE CITIZEN SERVICES & INFORMATION PORTAL (JAVASCRIPT) -->
+    <section class="interactive-portal-section">
+        <h2>Interactive Citizen Service Portal</h2>
+        <p>Enter citizen profile and utility details below to verify municipal zone validity, check Senior Citizen Service eligibility, and calculate monthly water consumption.</p>
+
+        <div id="errorBox" class="status-message badge-danger" style="display:none; margin-bottom: 15px;"></div>
+
+        <div class="portal-grid">
+            <!-- Left: Citizen Data Input Form -->
+            <div class="form-box">
+                <h3 style="margin-top:0;">Citizen &amp; Utility Information</h3>
+                <form id="citizenForm" onsubmit="event.preventDefault(); processCitizenPortal();">
+                    <div class="form-group">
+                        <label for="citizenName">Citizen Full Name *</label>
+                        <input type="text" id="citizenName" placeholder="e.g. Rajesh Kumar" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="citizenAge">Citizen Age (Years) *</label>
+                        <input type="number" id="citizenAge" min="0" max="125" placeholder="e.g. 62" required>
+                        <div class="hint">Age 60+ qualifies for Senior Citizen Services.</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="wardNumber">Municipal Ward Number (1 to 50) *</label>
+                        <input type="number" id="wardNumber" min="1" max="100" placeholder="e.g. 14" required>
+                        <div class="hint">Valid municipal wards range between 1 and 50.</div>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="prevReading">Previous Month Water-Meter Reading (KL) *</label>
+                        <input type="number" step="0.1" id="prevReading" min="0" placeholder="e.g. 1420.5" required>
+                    </div>
+
+                    <div class="form-group">
+                        <label for="currReading">Current Month Water-Meter Reading (KL) *</label>
+                        <input type="number" step="0.1" id="currReading" min="0" placeholder="e.g. 1445.0" required>
+                    </div>
+
+                    <div class="btn-group">
+                        <button type="submit" class="btn btn-primary">Process &amp; Calculate</button>
+                        <button type="button" class="btn btn-secondary" onclick="runPromptAssistant()">💬 Launch Prompt Mode</button>
+                        <button type="button" class="btn btn-reset" onclick="resetPortalForm()">Clear</button>
+                    </div>
+                </form>
+            </div>
+
+            <!-- Right: Dynamic Output & Summary Panel -->
+            <div class="output-box" id="resultSection" style="display:none;">
+                <div class="welcome-banner" id="outputWelcome">
+                    <!-- Personalized welcome injected by JavaScript -->
+                </div>
+
+                <div class="info-cards">
+                    <div class="info-card" id="outputWard">
+                        <!-- Ward Status injected by JavaScript -->
+                    </div>
+                    <div style="font-size:12.5px; color:#40556b; margin-top:-6px; margin-bottom:4px;" id="outputWardMsg"></div>
+
+                    <div class="info-card" id="outputSenior">
+                        <!-- Senior Citizen Eligibility injected by JavaScript -->
+                    </div>
+                    <div style="font-size:12.5px; color:#40556b; margin-top:-6px; margin-bottom:4px;" id="outputSeniorMsg"></div>
+
+                    <div class="info-card" id="outputWater">
+                        <!-- Water Units injected by JavaScript -->
+                    </div>
+                </div>
+
+                <div class="consumption-summary" id="outputWaterSummary">
+                    <!-- Water Consumption Summary injected by JavaScript -->
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <section>
+        <h2>Welcome to Our Smart City</h2>
+        <div style="text-align:center;">
+            <div style="display:inline-block; vertical-align:top; margin:10px;">
+                <img src="city.png" alt="Smart City Skyline" width="350" style="border-radius: 8px;">
+            </div>
+            <div style="display:inline-block; vertical-align:top; margin:10px; text-align:left; max-width:400px;">
+                <p>
+                    Our Smart City integrates technology, sustainability, and citizen
+                    welfare to provide an exceptional quality of life for over 2 million residents.
+                </p>
+                <h3>Quick Facts</h3>
+                <ul>
+                    <li>Area: 450 sq. km</li>
+                    <li>Population: 2.1 Million</li>
+                    <li>Green Cover: 35%</li>
+                    <li>Smart Zones: 12</li>
+                    <li>WiFi Hotspots: 500+</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <article>
+        <h2>Latest News</h2>
+        <h3>Smart City Wins National Award for Urban Development</h3>
+        <p>
+            <small>Published on: <time datetime="2026-07-20">July 20, 2026</time></small>
+        </p>
+        <p>
+            Our Smart City has been awarded the <b class="highlight">National Excellence Award</b>
+            for outstanding urban development and 100% digital governance.
+        </p>
+    </article>
+
+    <footer>
+        <p align="center">&copy; 2026 Smart City Municipal Corporation. All Rights Reserved. &reg;</p>
+        <p align="center">
+            <small>Designed using HTML5, CSS3 &amp; JavaScript | <span><i>Powered by Smart City Initiative</i></span></small>
+        </p>
+    </footer>
+
+    <!-- External JavaScript File -->
+    <script src="script.js"></script>
+
+</body>
+
+</html>

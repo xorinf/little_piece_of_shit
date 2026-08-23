@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Student Registration Form</title>
+</head>
+
+<body>
+
+    <h1 align="center">STUDENT REGISTRATION FORM</h1>
+    <hr>
+
+    <form action="#" method="post">
+
+        <label for="name">Student Name:</label><br>
+        <input type="text" id="name" name="name"
+               placeholder="Enter your name"
+               required maxlength="30">
+        <br><br>
+
+        <label for="roll">Roll Number:</label><br>
+        <input type="text" id="roll" name="roll"
+               placeholder="Enter Roll Number"
+               required>
+        <br><br>
+
+        <label for="email">Email:</label><br>
+        <input type="email" id="email" name="email"
+               placeholder="Enter Email"
+               required>
+        <br><br>
+
+        <label for="password">Password:</label><br>
+        <input type="password" id="password" name="password"
+               required minlength="6">
+        <br><br>
+
+        <label>Gender:</label><br>
+
+        <input type="radio" id="male" name="gender" value="Male">
+        <label for="male">Male</label>
+
+        <input type="radio" id="female" name="gender" value="Female">
+        <label for="female">Female</label>
+
+        <input type="radio" id="other" name="gender" value="Other">
+        <label for="other">Other</label>
+
+        <br><br>
+
+        <label for="branch">Branch:</label><br>
+
+        <select id="branch" name="branch">
+
+            <option value="">Select Branch</option>
+            <option>CSE</option>
+            <option>ECE</option>
+            <option>EEE</option>
+            <option>MECH</option>
+            <option>CIVIL</option>
+
+        </select>
+
+        <br><br>
+
+        <label for="mobile">Mobile Number:</label><br>
+        <input type="tel" id="mobile" name="mobile"
+               pattern="[0-9]{10}"
+               placeholder="10-digit Mobile Number"
+               required>
+        <br><br>
+
+        <label for="dob">Date of Birth:</label><br>
+        <input type="date" id="dob" name="dob">
+        <br><br>
+
+        <label for="address">Address:</label><br>
+
+        <textarea id="address"
+                  name="address"
+                  rows="4"
+                  cols="30"></textarea>
+
+        <br><br>
+
+        <label>Hobbies:</label><br>
+
+        <input type="checkbox" id="reading">
+        <label for="reading">Reading</label>
+
+        <input type="checkbox" id="sports">
+        <label for="sports">Sports</label>
+
+        <input type="checkbox" id="music">
+        <label for="music">Music</label>
+
+        <br><br>
+
+        <input type="submit" value="Register">
+
+        <input type="reset" value="Clear">
+
+    </form>
+
+</body>
+
+</html>
