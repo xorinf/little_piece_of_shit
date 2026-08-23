@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Smart City Portal - Simple Form</title>
+</head>
+<body>
+
+    <h2>Municipal Corporation - Smart City Information Portal</h2>
+    <p>Please enter citizen details below:</p>
+
+    <!-- Simple Form for Citizen Data Input -->
+    <form onsubmit="event.preventDefault(); processForm();">
+        <p>
+            <label>Citizen Name: </label><br>
+            <input type="text" id="name" required>
+        </p>
+
+        <p>
+            <label>Citizen Age: </label><br>
+            <input type="number" id="age" required>
+        </p>
+
+        <p>
+            <label>Ward Number (1 to 50): </label><br>
+            <input type="number" id="ward" required>
+        </p>
+
+        <p>
+            <label>Previous Month Water-Meter Reading: </label><br>
+            <input type="number" step="any" id="prevReading" required>
+        </p>
+
+        <p>
+            <label>Current Month Water-Meter Reading: </label><br>
+            <input type="number" step="any" id="currReading" required>
+        </p>
+
+        <p>
+            <input type="submit" value="Submit & Calculate">
+            <input type="reset" value="Clear">
+        </p>
+    </form>
+
+    <hr>
+
+    <!-- Output Section -->
+    <h3>Results:</h3>
+    <div id="output">
+        <p><i>Enter details above and click Submit to view results.</i></p>
+    </div>
+
+    <!-- Basic JavaScript Logic -->
+    <script>
+        function processForm() {
+            // 1. Accepts citizen's name and age
+            var name = document.getElementById("name").value;
+            var age = parseInt(document.getElementById("age").value);
+
+            // 2. Personalized welcome message
+            var welcomeMessage = "Welcome " + name + " to the Smart City Information Portal!";
+
+            // 3. Accepts ward number
+            var ward = parseInt(document.getElementById("ward").value);
+
+            // 4. Checks whether ward number is valid (1 to 50)
+            var wardStatus = "";
+            if (ward >= 1 && ward <= 50) {
+                wardStatus = "Ward " + ward + " is a VALID ward number.";
+            } else {
+                wardStatus = "Ward " + ward + " is an INVALID ward number. (Valid wards: 1 to 50)";
+            }
+
+            // 5. Determines Senior Citizen Service eligibility (Age 60 or above)
+            var seniorStatus = "";
+            if (age >= 60) {
+                seniorStatus = "Eligible for Senior Citizen Service (Age: " + age + ")";
+            } else {
+                seniorStatus = "Not Eligible for Senior Citizen Service (Age: " + age + ")";
+            }
+
+            // 6. Accepts water-meter readings and calculates units consumed
+            var prevReading = parseFloat(document.getElementById("prevReading").value);
+            var currReading = parseFloat(document.getElementById("currReading").value);
+            var unitsConsumed = currReading - prevReading;
+
+            // 7. Display calculated water consumption and summary
+            var resultHtml = "<h4>" + welcomeMessage + "</h4>" +
+                "<p><strong>Citizen Name:</strong> " + name + "</p>" +
+                "<p><strong>Citizen Age:</strong> " + age + "</p>" +
+                "<p><strong>Ward Status:</strong> " + wardStatus + "</p>" +
+                "<p><strong>Senior Citizen Status:</strong> " + seniorStatus + "</p>" +
+                "<p><strong>Previous Meter Reading:</strong> " + prevReading + "</p>" +
+                "<p><strong>Current Meter Reading:</strong> " + currReading + "</p>" +
+                "<p><strong>Calculated Water Consumption:</strong> " + unitsConsumed + " units</p>";
+
+            document.getElementById("output").innerHTML = resultHtml;
+        }
+    </script>
+
+</body>
+</html>
