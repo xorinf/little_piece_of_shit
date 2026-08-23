@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart City - Home</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <header>
+        <div style="text-align:center;">
+            <img src="logo.png" alt="Smart City Logo" width="100" height="100" style="vertical-align:middle;">
+            <span style="vertical-align:middle;">
+                <b style="font-size:28px;">SMART CITY INFORMATION PORTAL</b>
+            </span>
+            <p><i>"Building Tomorrow, Today"</i></p>
+        </div>
+    </header>
+    <nav>
+        <a href="index.html">Home</a> &nbsp; | &nbsp;
+        <a href="services.html">Services</a> &nbsp; | &nbsp;
+        <a href="tourism.html">Tourism</a> &nbsp; | &nbsp;
+        <a href="gallery.html">Gallery</a> &nbsp; | &nbsp;
+        <a href="contact.html">Contact</a>
+    </nav>
+    <section>
+        <h2>Citizen Information Portal</h2>
+        <p>Please enter citizen details below:</p>
+        <form>
+            <p>
+                <label for="citizenName">Citizen Name:</label>
+                <input type="text" id="citizenName" value="Rajesh Kumar">
+            </p>
+            <p>
+                <label for="citizenAge">Citizen Age:</label>
+                <input type="number" id="citizenAge" value="65">
+            </p>
+            <p>
+                <label for="wardNumber">Ward Number (1 to 50):</label>
+                <input type="number" id="wardNumber" value="25">
+            </p>
+            <p>
+                <label for="prevReading">Previous Month Water-Meter Reading:</label>
+                <input type="number" id="prevReading" value="1420.5">
+            </p>
+            <p>
+                <label for="currReading">Current Month Water-Meter Reading:</label>
+                <input type="number" id="currReading" value="1485.0">
+            </p>
+            <p>
+                <input type="button" value="Submit &amp; Calculate">
+                <input type="button" value="Clear">
+            </p>
+        </form>
+        <div id="resultSection">
+            <h3>Results:</h3>
+            <div id="output">
+                <h4>Welcome Rajesh Kumar to the Smart City Information Portal!</h4>
+                <p><strong>Citizen Name:</strong> Rajesh Kumar</p>
+                <p><strong>Citizen Age:</strong> 65</p>
+                <p><strong>Ward Status:</strong> Ward 25 is a VALID ward number.</p>
+                <p><strong>Senior Citizen Status:</strong> Eligible for Senior Citizen Service (Age: 65)</p>
+                <p><strong>Previous Meter Reading:</strong> 1420.5</p>
+                <p><strong>Current Meter Reading:</strong> 1485</p>
+                <p><strong>Calculated Water Consumption:</strong> 64.5 units</p>
+            </div>
+        </div>
+    </section>
+    <footer>
+        <p align="center">&copy; 2026 Smart City Municipal Corporation. All Rights Reserved. &reg;</p>
+        <p align="center"><small>Designed using HTML5, CSS3 &amp; JavaScript | <i>Powered by Smart City Initiative</i></small></p>
+    </footer>
+</body>
+</html>
