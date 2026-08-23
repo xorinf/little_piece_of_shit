@@ -34,70 +34,6 @@
         <a href="contact.html">Contact</a>
     </nav>
 
-    <!-- Interactive Citizen Portal Tool on Services Page -->
-    <section class="interactive-portal-section">
-        <h2>Online Citizen Utility &amp; Eligibility Calculator</h2>
-        <p>Use our digital utility calculator to verify Senior Citizen Scheme eligibility, check municipal ward coverage, and compute monthly water meter usage.</p>
-
-        <div id="errorBox" class="status-message badge-danger" style="display:none; margin-bottom: 15px;"></div>
-
-        <div class="portal-grid">
-            <div class="form-box">
-                <h3 style="margin-top:0;">Citizen &amp; Meter Input</h3>
-                <form id="citizenForm" onsubmit="event.preventDefault(); processCitizenPortal();">
-                    <div class="form-group">
-                        <label for="citizenName">Citizen Full Name *</label>
-                        <input type="text" id="citizenName" placeholder="e.g. Rajesh Kumar" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="citizenAge">Citizen Age (Years) *</label>
-                        <input type="number" id="citizenAge" min="0" max="125" placeholder="e.g. 62" required>
-                        <div class="hint">Age 60+ qualifies for Senior Citizen Services.</div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="wardNumber">Municipal Ward Number (1 to 50) *</label>
-                        <input type="number" id="wardNumber" min="1" max="100" placeholder="e.g. 14" required>
-                        <div class="hint">Valid municipal wards range between 1 and 50.</div>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="prevReading">Previous Month Water-Meter Reading (KL) *</label>
-                        <input type="number" step="0.1" id="prevReading" min="0" placeholder="e.g. 1420.5" required>
-                    </div>
-
-                    <div class="form-group">
-                        <label for="currReading">Current Month Water-Meter Reading (KL) *</label>
-                        <input type="number" step="0.1" id="currReading" min="0" placeholder="e.g. 1445.0" required>
-                    </div>
-
-                    <div class="btn-group">
-                        <button type="submit" class="btn btn-primary">Calculate Consumption</button>
-                        <button type="button" class="btn btn-secondary" onclick="runPromptAssistant()">💬 Prompt Assistant</button>
-                        <button type="button" class="btn btn-reset" onclick="resetPortalForm()">Clear</button>
-                    </div>
-                </form>
-            </div>
-
-            <div class="output-box" id="resultSection" style="display:none;">
-                <div class="welcome-banner" id="outputWelcome"></div>
-
-                <div class="info-cards">
-                    <div class="info-card" id="outputWard"></div>
-                    <div style="font-size:12.5px; color:#40556b; margin-top:-6px; margin-bottom:4px;" id="outputWardMsg"></div>
-
-                    <div class="info-card" id="outputSenior"></div>
-                    <div style="font-size:12.5px; color:#40556b; margin-top:-6px; margin-bottom:4px;" id="outputSeniorMsg"></div>
-
-                    <div class="info-card" id="outputWater"></div>
-                </div>
-
-                <div class="consumption-summary" id="outputWaterSummary"></div>
-            </div>
-        </div>
-    </section>
-
     <section>
         <h2>Public Services</h2>
         <p>The Municipal Corporation provides the following services to all citizens through digital and offline channels:</p>
@@ -208,10 +144,8 @@
 
     <footer>
         <p align="center">&copy; 2026 Smart City Municipal Corporation. All Rights Reserved. &reg;</p>
-        <p align="center"><small>Designed using HTML5, CSS3 &amp; JavaScript | <span><i>Powered by Smart City Initiative</i></span></small></p>
+        <p align="center"><small>Designed using HTML5 &amp; CSS | <span><i>Powered by Smart City Initiative</i></span></small></p>
     </footer>
-
-    <script src="script.js"></script>
 
 </body>
 

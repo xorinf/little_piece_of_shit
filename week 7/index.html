@@ -4,7 +4,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Smart City - Home & Citizen Portal</title>
+    <title>Smart City - Home</title>
     <link rel="stylesheet" href="styles.css">
     <style>
         .highlight {
@@ -34,79 +34,47 @@
         <a href="contact.html">Contact</a>
     </nav>
 
-    <!-- WEEK 7: INTERACTIVE CITIZEN SERVICES & INFORMATION PORTAL (JAVASCRIPT) -->
-    <section class="interactive-portal-section">
-        <h2>Interactive Citizen Service Portal</h2>
-        <p>Enter citizen profile and utility details below to verify municipal zone validity, check Senior Citizen Service eligibility, and calculate monthly water consumption.</p>
+    <!-- Citizen Information Section -->
+    <section>
+        <h2>Citizen Information Portal</h2>
+        <p>Please enter citizen details below:</p>
 
-        <div id="errorBox" class="status-message badge-danger" style="display:none; margin-bottom: 15px;"></div>
+        <form onsubmit="event.preventDefault(); processCitizenPortal();">
+            <p>
+                <label for="citizenName">Citizen Name:</label><br>
+                <input type="text" id="citizenName" required>
+            </p>
 
-        <div class="portal-grid">
-            <!-- Left: Citizen Data Input Form -->
-            <div class="form-box">
-                <h3 style="margin-top:0;">Citizen &amp; Utility Information</h3>
-                <form id="citizenForm" onsubmit="event.preventDefault(); processCitizenPortal();">
-                    <div class="form-group">
-                        <label for="citizenName">Citizen Full Name *</label>
-                        <input type="text" id="citizenName" placeholder="e.g. Rajesh Kumar" required>
-                    </div>
+            <p>
+                <label for="citizenAge">Citizen Age:</label><br>
+                <input type="number" id="citizenAge" required>
+            </p>
 
-                    <div class="form-group">
-                        <label for="citizenAge">Citizen Age (Years) *</label>
-                        <input type="number" id="citizenAge" min="0" max="125" placeholder="e.g. 62" required>
-                        <div class="hint">Age 60+ qualifies for Senior Citizen Services.</div>
-                    </div>
+            <p>
+                <label for="wardNumber">Ward Number (1 to 50):</label><br>
+                <input type="number" id="wardNumber" required>
+            </p>
 
-                    <div class="form-group">
-                        <label for="wardNumber">Municipal Ward Number (1 to 50) *</label>
-                        <input type="number" id="wardNumber" min="1" max="100" placeholder="e.g. 14" required>
-                        <div class="hint">Valid municipal wards range between 1 and 50.</div>
-                    </div>
+            <p>
+                <label for="prevReading">Previous Month Water-Meter Reading:</label><br>
+                <input type="number" step="any" id="prevReading" required>
+            </p>
 
-                    <div class="form-group">
-                        <label for="prevReading">Previous Month Water-Meter Reading (KL) *</label>
-                        <input type="number" step="0.1" id="prevReading" min="0" placeholder="e.g. 1420.5" required>
-                    </div>
+            <p>
+                <label for="currReading">Current Month Water-Meter Reading:</label><br>
+                <input type="number" step="any" id="currReading" required>
+            </p>
 
-                    <div class="form-group">
-                        <label for="currReading">Current Month Water-Meter Reading (KL) *</label>
-                        <input type="number" step="0.1" id="currReading" min="0" placeholder="e.g. 1445.0" required>
-                    </div>
+            <p>
+                <input type="submit" value="Submit &amp; Calculate">
+                <input type="reset" value="Clear">
+            </p>
+        </form>
 
-                    <div class="btn-group">
-                        <button type="submit" class="btn btn-primary">Process &amp; Calculate</button>
-                        <button type="button" class="btn btn-secondary" onclick="runPromptAssistant()">💬 Launch Prompt Mode</button>
-                        <button type="button" class="btn btn-reset" onclick="resetPortalForm()">Clear</button>
-                    </div>
-                </form>
-            </div>
-
-            <!-- Right: Dynamic Output & Summary Panel -->
-            <div class="output-box" id="resultSection" style="display:none;">
-                <div class="welcome-banner" id="outputWelcome">
-                    <!-- Personalized welcome injected by JavaScript -->
-                </div>
-
-                <div class="info-cards">
-                    <div class="info-card" id="outputWard">
-                        <!-- Ward Status injected by JavaScript -->
-                    </div>
-                    <div style="font-size:12.5px; color:#40556b; margin-top:-6px; margin-bottom:4px;" id="outputWardMsg"></div>
-
-                    <div class="info-card" id="outputSenior">
-                        <!-- Senior Citizen Eligibility injected by JavaScript -->
-                    </div>
-                    <div style="font-size:12.5px; color:#40556b; margin-top:-6px; margin-bottom:4px;" id="outputSeniorMsg"></div>
-
-                    <div class="info-card" id="outputWater">
-                        <!-- Water Units injected by JavaScript -->
-                    </div>
-                </div>
-
-                <div class="consumption-summary" id="outputWaterSummary">
-                    <!-- Water Consumption Summary injected by JavaScript -->
-                </div>
-            </div>
+        <div id="resultSection" style="display:none;">
+            <hr>
+            <h3>Results:</h3>
+            <div id="output"></div>
         </div>
     </section>
 
@@ -152,7 +120,6 @@
         </p>
     </footer>
 
-    <!-- External JavaScript File -->
     <script src="script.js"></script>
 
 </body>
