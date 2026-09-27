@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart City - Home</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .form-group {
+            margin-bottom: 14px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            color: #003366;
+            margin-bottom: 4px;
+        }
+        .form-group input, 
+        .form-group select, 
+        .form-group textarea {
+            width: 100%;
+            max-width: 500px;
+            padding: 8px 12px;
+            border: 1px solid #99aabb;
+            border-radius: 4px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+        .form-group textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+        #messageBox {
+            margin-top: 15px;
+            font-weight: bold;
+            font-size: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div style="text-align:center;">
+            <img src="logo.png" alt="Smart City Logo" width="100" height="100" style="vertical-align:middle;">
+            <span style="vertical-align:middle;">
+                <b style="font-size:28px;">SMART CITY INFORMATION PORTAL</b>
+            </span>
+            <p><i>"Building Tomorrow, Today"</i></p>
+        </div>
+    </header>
+
+    <nav>
+        <a href="index.html">Home</a> &nbsp; | &nbsp;
+        <a href="services.html">Services</a> &nbsp; | &nbsp;
+        <a href="tourism.html">Tourism</a> &nbsp; | &nbsp;
+        <a href="gallery.html">Gallery</a> &nbsp; | &nbsp;
+        <a href="contact.html">Contact</a>
+    </nav>
+
+    <!-- Citizen Complaint Registration Section -->
+    <section class="dashboard-section" id="complaintSection">
+        <h2>Citizen Complaint Registration</h2>
+        <p>The Municipal Corporation introduces this digital facility for citizen grievance redressal. Submit your complaint below:</p>
+
+        <form onsubmit="event.preventDefault(); registerComplaint();">
+            <div class="form-group">
+                <label for="citizenName">Citizen Name:</label>
+                <input type="text" id="citizenName" placeholder="Enter your full name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="mobileNumber">Mobile Number (10 Digits):</label>
+                <input type="text" id="mobileNumber" placeholder="e.g. 9876543210" maxlength="10" required>
+            </div>
+
+            <div class="form-group">
+                <label for="complaintCategory">Complaint Category:</label>
+                <select id="complaintCategory" required>
+                    <option value="">-- Select Category --</option>
+                    <option value="Road Damage">Road Damage</option>
+                    <option value="Garbage">Garbage</option>
+                    <option value="Drainage">Drainage</option>
+                    <option value="Street Light">Street Light</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="complaintDescription">Complaint Description:</label>
+                <textarea id="complaintDescription" placeholder="Describe the issue in detail..." required></textarea>
+            </div>
+
+            <div style="margin-top: 15px;">
+                <button type="submit">Submit Complaint</button>
+                <button type="button" onclick="viewSavedComplaint()" style="background-color:#555;">View Saved Complaint</button>
+            </div>
+        </form>
+
+        <!-- Notification Message Box -->
+        <div id="messageBox"></div>
+
+        <!-- Output container for complaint registration details -->
+        <div id="complaintOutput" style="margin-top: 15px;"></div>
+    </section>
+
+    <section>
+        <h2>Welcome to Our Smart City</h2>
+        <div style="text-align:center;">
+            <div style="display:inline-block; vertical-align:top; margin:10px;">
+                <img src="city.png" alt="Smart City Skyline" width="350" style="border-radius: 6px;">
+            </div>
+            <div style="display:inline-block; vertical-align:top; margin:10px; text-align:left; max-width:400px;">
+                <p>
+                    Our Smart City integrates technology, sustainability, and citizen
+                    welfare to provide an exceptional quality of life for over 2 million residents.
+                </p>
+                <h3>Quick Facts</h3>
+                <ul>
+                    <li>Area: 450 sq. km</li>
+                    <li>Population: 2.1 Million</li>
+                    <li>Green Cover: 35%</li>
+                    <li>Smart Zones: 12</li>
+                    <li>WiFi Hotspots: 500+</li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <article>
+        <h2>Latest News</h2>
+        <h3>Smart City Wins National Award for Urban Development</h3>
+        <p>
+            <small>Published on: July 20, 2026</small>
+        </p>
+        <p>
+            Our Smart City has been awarded the <b>National Excellence Award</b>
+            for outstanding urban development and 100% digital governance.
+        </p>
+    </article>
+
+    <footer>
+        <p align="center">&copy; 2026 Smart City Municipal Corporation. All Rights Reserved. &reg;</p>
+        <p align="center">
+            <small>Designed using HTML5, CSS3 &amp; Advanced JavaScript | <i>Powered by Smart City Initiative</i></small>
+        </p>
+    </footer>
+
+    <!-- Link JavaScript logic -->
+    <script src="script.js"></script>
+
+</body>
+
+</html>

@@ -1,0 +1,260 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart City - Citizen Services Dashboard (Simple)</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f6f9;
+            color: #333;
+        }
+        .container {
+            max-width: 800px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #003366;
+            border-bottom: 2px solid #003366;
+            padding-bottom: 10px;
+            margin-top: 0;
+        }
+        .welcome-msg {
+            display: none;
+            background-color: #e8f4fd;
+            border-left: 4px solid #0055a5;
+            color: #003366;
+            padding: 12px;
+            margin-bottom: 15px;
+            border-radius: 4px;
+            font-weight: bold;
+        }
+        .controls {
+            margin: 15px 0;
+        }
+        button {
+            background-color: #003366;
+            color: white;
+            padding: 10px 18px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        button:hover {
+            background-color: #0055a5;
+        }
+        button:disabled, select:disabled {
+            background-color: #e0e0e0;
+            cursor: not-allowed;
+        }
+        select {
+            padding: 8px 12px;
+            font-size: 14px;
+            border-radius: 4px;
+            border: 1px solid #aaa;
+            min-width: 250px;
+            margin-right: 10px;
+        }
+        .services-list-view {
+            margin: 15px 0;
+            padding-left: 20px;
+        }
+        .services-list-view li {
+            padding: 6px 0;
+            color: #003366;
+            font-size: 15px;
+        }
+        .details-card {
+            display: none;
+            margin-top: 20px;
+            padding: 15px;
+            background: #fafbfc;
+            border: 1px solid #cce0ff;
+            border-radius: 6px;
+        }
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 10px;
+        }
+        th, td {
+            border: 1px solid #ddd;
+            padding: 10px;
+            text-align: left;
+        }
+        th {
+            background-color: #003366;
+            color: white;
+            width: 30%;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container" id="dashboardSection" tabindex="0" onclick="displayWelcomeMessage()" onfocusin="displayWelcomeMessage()">
+    <h2>Municipal Corporation - Citizen Services Dashboard</h2>
+    <p>Enhance city living by accessing municipal service details in real time.</p>
+
+    <!-- 1. Display simple welcome message when citizen interacts with the service section -->
+    <div id="welcomeMessage" class="welcome-msg"></div>
+
+    <!-- 2. "Show Services" button -->
+    <div class="controls">
+        <button type="button" id="showServicesBtn" onclick="showServices()">Show Services</button>
+        <span id="loadStatus" style="font-weight: bold; color: green;"></span>
+    </div>
+
+    <!-- 3. Available City Services Section -->
+    <div id="servicesContainer" style="display: none;">
+        <h3>Available City Services</h3>
+        <ol id="servicesList" class="services-list-view"></ol>
+
+        <!-- 4. Select a service from a list and Show Details button -->
+        <div class="controls">
+            <label for="serviceSelect"><strong>Select Service: </strong></label>
+            <select id="serviceSelect" disabled onchange="showServiceDetails()">
+                <option value="">-- Choose a Service --</option>
+            </select>
+            <button type="button" id="showDetailsBtn" onclick="showServiceDetails()">Show Details</button>
+        </div>
+
+        <!-- 5. Display results inside the webpage instead of using popup messages -->
+        <div id="detailsBox" class="details-card">
+            <div id="detailsContent"></div>
+        </div>
+    </div>
+</div>
+
+<script>
+    // Title: Implementation of JavaScript Functions, Arrays, Objects, DOM and Events
+    // Aim: To enhance the existing Smart City Information Portal by implementing basic JavaScript functions, 
+    // arrays, objects, DOM manipulation, and events.
+
+    // 1. Maintain the names of five city services in an Array
+    var serviceNames = [
+        "Hospital",
+        "Fire Station",
+        "Police Station",
+        "Public Library",
+        "Bus Station"
+    ];
+
+    // 2. Store basic information about a city service such as name, location, working hours, and contact number in Objects
+    var cityServices = {
+        "Hospital": {
+            name: "City General Hospital",
+            location: "Civic Sector 4, Hospital Road",
+            workingHours: "24 Hours (Emergency & In-patient)",
+            contactNumber: "040-23456701 / Helpline: 108"
+        },
+        "Fire Station": {
+            name: "Central Fire & Emergency Services",
+            location: "Fire Station Complex, Industrial Area",
+            workingHours: "24 Hours (Emergency Response)",
+            contactNumber: "040-23456702 / Helpline: 101"
+        },
+        "Police Station": {
+            name: "Central Police Station",
+            location: "Court Road, Civic District",
+            workingHours: "24 Hours (Citizen Safety & Law Enforcement)",
+            contactNumber: "040-23456703 / Helpline: 100"
+        },
+        "Public Library": {
+            name: "City Central Public Library",
+            location: "Knowledge Boulevard, Sector 2",
+            workingHours: "9:00 AM to 8:00 PM (Closed on Mondays)",
+            contactNumber: "040-23456704"
+        },
+        "Bus Station": {
+            name: "Inter-City Central Bus Station",
+            location: "Station Square, Sector 1",
+            workingHours: "24 Hours Service",
+            contactNumber: "040-23456705"
+        }
+    };
+
+    // 3. Display a simple message such as “Welcome to Smart City Services” when citizen interacts with the service section
+    function displayWelcomeMessage() {
+        var msgDiv = document.getElementById("welcomeMessage");
+        msgDiv.innerHTML = "Welcome to Smart City Services";
+        msgDiv.style.display = "block";
+    }
+
+    // 4. Function to display available city services on the webpage (Show Services button)
+    function showServices() {
+        // Welcome message also shown upon interaction
+        displayWelcomeMessage();
+
+        var listElement = document.getElementById("servicesList");
+        var selectElement = document.getElementById("serviceSelect");
+        var container = document.getElementById("servicesContainer");
+
+        // Clear previous content
+        listElement.innerHTML = "";
+        selectElement.innerHTML = "<option value=''>-- Choose a Service --</option>";
+
+        // Populate array into DOM (list & dropdown)
+        for (var i = 0; i < serviceNames.length; i++) {
+            var service = serviceNames[i];
+
+            // Add to unordered/ordered list
+            var li = document.createElement("li");
+            li.textContent = service;
+            listElement.appendChild(li);
+
+            // Add to dropdown list
+            var opt = document.createElement("option");
+            opt.value = service;
+            opt.textContent = (i + 1) + ". " + service;
+            selectElement.appendChild(opt);
+        }
+
+        // Enable dropdown and show container
+        selectElement.disabled = false;
+        container.style.display = "block";
+        document.getElementById("loadStatus").textContent = "Available services loaded!";
+    }
+
+    // 5. Function to display information about the selected service inside the webpage (Show Details button)
+    function showServiceDetails() {
+        var selectElement = document.getElementById("serviceSelect");
+        var selectedValue = selectElement.value;
+        var detailsBox = document.getElementById("detailsBox");
+        var detailsContent = document.getElementById("detailsContent");
+
+        if (!selectedValue) {
+            detailsContent.innerHTML = "<p style='color: red;'>Please select a service from the list first.</p>";
+            detailsBox.style.display = "block";
+            return;
+        }
+
+        // Fetch service object
+        var service = cityServices[selectedValue];
+
+        if (service) {
+            // Render table inside webpage using DOM manipulation (NO popups)
+            var html = "<h4>Service Details: " + service.name + "</h4>";
+            html += "<table>";
+            html += "<tr><th>Service Name</th><td>" + service.name + "</td></tr>";
+            html += "<tr><th>Location</th><td>" + service.location + "</td></tr>";
+            html += "<tr><th>Working Hours</th><td>" + service.workingHours + "</td></tr>";
+            html += "<tr><th>Contact Number</th><td>" + service.contactNumber + "</td></tr>";
+            html += "</table>";
+
+            detailsContent.innerHTML = html;
+            detailsBox.style.display = "block";
+        }
+    }
+</script>
+
+</body>
+</html>

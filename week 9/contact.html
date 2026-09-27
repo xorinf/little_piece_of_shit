@@ -1,0 +1,155 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart City - Citizen Complaints &amp; Contact</title>
+    <link rel="stylesheet" href="styles.css">
+    <style>
+        .form-group {
+            margin-bottom: 14px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: bold;
+            color: #003366;
+            margin-bottom: 4px;
+        }
+        .form-group input, 
+        .form-group select, 
+        .form-group textarea {
+            width: 100%;
+            max-width: 500px;
+            padding: 8px 12px;
+            border: 1px solid #99aabb;
+            border-radius: 4px;
+            font-size: 14px;
+            box-sizing: border-box;
+        }
+        .form-group textarea {
+            min-height: 80px;
+            resize: vertical;
+        }
+        #messageBox {
+            margin-top: 15px;
+            font-weight: bold;
+            font-size: 15px;
+        }
+    </style>
+</head>
+
+<body>
+
+    <header>
+        <div style="text-align:center;">
+            <img src="logo.png" alt="Smart City Logo" width="100" height="100" style="vertical-align:middle;">
+            <span style="vertical-align:middle;">
+                <b style="font-size:28px;">SMART CITY INFORMATION PORTAL</b>
+            </span>
+            <p><span><b><i>"Building Tomorrow, Today"</i></b></span></p>
+        </div>
+    </header>
+
+    <nav>
+        <a href="index.html">Home</a> &nbsp; | &nbsp;
+        <a href="services.html">Services</a> &nbsp; | &nbsp;
+        <a href="tourism.html">Tourism</a> &nbsp; | &nbsp;
+        <a href="gallery.html">Gallery</a> &nbsp; | &nbsp;
+        <a href="contact.html">Contact</a>
+    </nav>
+
+    <!-- Citizen Complaint Registration Section -->
+    <section class="dashboard-section" id="complaintSection">
+        <h2>Citizen Complaint Registration</h2>
+        <p>The Municipal Corporation welcomes citizen grievances. Register your issue below for prompt civic resolution:</p>
+
+        <form onsubmit="event.preventDefault(); registerComplaint();">
+            <div class="form-group">
+                <label for="citizenName">Citizen Name:</label>
+                <input type="text" id="citizenName" placeholder="Enter your full name" required>
+            </div>
+
+            <div class="form-group">
+                <label for="mobileNumber">Mobile Number (10 Digits):</label>
+                <input type="text" id="mobileNumber" placeholder="e.g. 9876543210" maxlength="10" required>
+            </div>
+
+            <div class="form-group">
+                <label for="complaintCategory">Complaint Category:</label>
+                <select id="complaintCategory" required>
+                    <option value="">-- Select Category --</option>
+                    <option value="Road Damage">Road Damage</option>
+                    <option value="Garbage">Garbage</option>
+                    <option value="Drainage">Drainage</option>
+                    <option value="Street Light">Street Light</option>
+                    <option value="Other">Other</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="complaintDescription">Complaint Description:</label>
+                <textarea id="complaintDescription" placeholder="Describe the issue in detail..." required></textarea>
+            </div>
+
+            <div style="margin-top: 15px;">
+                <button type="submit">Submit Complaint</button>
+                <button type="button" onclick="viewSavedComplaint()" style="background-color:#555;">View Saved Complaint</button>
+            </div>
+        </form>
+
+        <!-- Message Box for error or success notifications -->
+        <div id="messageBox"></div>
+
+        <!-- Output container for complaint details -->
+        <div id="complaintOutput" style="margin-top: 15px;"></div>
+    </section>
+
+    <section>
+        <h2>Municipal Corporation Contact Info</h2>
+        <p><b>Address:</b> Municipal Corporation Head Office, MG Road, Smart City - 500001</p>
+        <p><b>Phone:</b> <span style="color: #003366; font-weight: bold;">+91&nbsp;98765&nbsp;43210</span></p>
+        <p><b>Email:</b> <a href="mailto:info@smartcity.gov.in" class="contact-link">info@smartcity.gov.in</a></p>
+        <p><b>Website:</b> <a href="https://www.smartcity.gov.in" target="_blank" class="contact-link">www.smartcity.gov.in</a></p>
+    </section>
+
+    <aside style="border-color: red;">
+        <h2 style="color: red;">Emergency Contacts</h2>
+        <table>
+            <tr style="background-color: red; color: white;">
+                <th style="background-color: red; color: white;">Service</th>
+                <th style="background-color: red; color: white;">Number</th>
+            </tr>
+            <tr>
+                <td>Police</td>
+                <td><b style="color: red;">100</b></td>
+            </tr>
+            <tr>
+                <td>Fire Station</td>
+                <td><b style="color: red;">101</b></td>
+            </tr>
+            <tr>
+                <td>Ambulance</td>
+                <td><b style="color: red;">108</b></td>
+            </tr>
+            <tr>
+                <td>Disaster Management</td>
+                <td><b style="color: red;">112</b></td>
+            </tr>
+            <tr>
+                <td>Women Helpline</td>
+                <td><b style="color: red;">181</b></td>
+            </tr>
+        </table>
+    </aside>
+
+    <footer>
+        <p align="center">&copy; 2026 Smart City Municipal Corporation. All Rights Reserved. &reg;</p>
+        <p align="center"><small>Designed using HTML5, CSS3 &amp; Advanced JavaScript | <i>Powered by Smart City Initiative</i></small></p>
+    </footer>
+
+    <script src="script.js"></script>
+
+</body>
+
+</html>

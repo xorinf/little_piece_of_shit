@@ -1,0 +1,86 @@
+
+// 1. Maintain the names of five city services such as Hospital, Fire Station, Police Station, Public Library, and Bus Station
+var serviceNames = [
+    "Hospital",
+    "Fire Station",
+    "Police Station",
+    "Public Library",
+    "Bus Station"
+];
+
+// 2. Store basic information about a city service such as its name, location, working hours, and contact number
+var cityServices = {
+    "Hospital": {
+        name: "City Hospital",
+        location: "Sector 4, Main Road",
+        workingHours: "24 Hours",
+        contactNumber: "040-23456701"
+    },
+    "Fire Station": {
+        name: "Central Fire Station",
+        location: "Industrial Area",
+        workingHours: "24 Hours",
+        contactNumber: "040-23456702"
+    },
+    "Police Station": {
+        name: "Central Police Station",
+        location: "Civic District",
+        workingHours: "24 Hours",
+        contactNumber: "040-23456703"
+    },
+    "Public Library": {
+        name: "City Public Library",
+        location: "Knowledge Park",
+        workingHours: "9:00 AM - 7:00 PM",
+        contactNumber: "040-23456704"
+    },
+    "Bus Station": {
+        name: "Central Bus Station",
+        location: "Station Square",
+        workingHours: "24 Hours",
+        contactNumber: "040-23456705"
+    }
+};
+
+// 3. Display a simple message such as “Welcome to Smart City Services” when the citizen interacts with the service section
+function welcomeMessage() {
+    document.getElementById("welcomeMessage").innerHTML = "Welcome to Smart City Services";
+}
+
+// 4. Provide a “Show Services” button to display the available city services on the webpage
+function showServices() {
+    var select = document.getElementById("serviceSelect");
+    select.innerHTML = "<option value=''>-- Select Service --</option>";
+
+    var listHtml = "<h3>Available Services:</h3><ul>";
+    for (var i = 0; i < serviceNames.length; i++) {
+        // Display the available city services on the webpage
+        listHtml += "<li>" + serviceNames[i] + "</li>";
+        // Allow the citizen to select a service from a list
+        select.innerHTML += "<option value='" + serviceNames[i] + "'>" + serviceNames[i] + "</option>";
+    }
+    listHtml += "</ul>";
+
+    document.getElementById("servicesList").innerHTML = listHtml;
+}
+
+// 5. Allow the citizen to select a service from a list and provide a “Show Details” button to display information about the selected service
+function showServiceDetails() {
+    var selected = document.getElementById("serviceSelect").value;
+
+    if (selected === "") {
+        document.getElementById("detailsDisplay").innerHTML = "<p>Please select a service from the list.</p>";
+        return;
+    }
+
+    var service = cityServices[selected];
+
+    // 6. Display all results inside the webpage instead of using popup messages
+    var details = "<h3>Service Details:</h3>" +
+        "<p><b>Name:</b> " + service.name + "</p>" +
+        "<p><b>Location:</b> " + service.location + "</p>" +
+        "<p><b>Working Hours:</b> " + service.workingHours + "</p>" +
+        "<p><b>Contact Number:</b> " + service.contactNumber + "</p>";
+
+    document.getElementById("detailsDisplay").innerHTML = details;
+}

@@ -1,0 +1,272 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Smart City - Citizen Complaint Registration</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+            background-color: #f4f6f9;
+            color: #333;
+        }
+        .container {
+            max-width: 650px;
+            margin: 0 auto;
+            background: #fff;
+            padding: 25px;
+            border-radius: 8px;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+        h2 {
+            color: #003366;
+            border-bottom: 2px solid #003366;
+            padding-bottom: 8px;
+            margin-top: 0;
+        }
+        .form-group {
+            margin-bottom: 15px;
+        }
+        label {
+            display: block;
+            font-weight: bold;
+            color: #003366;
+            margin-bottom: 5px;
+        }
+        input[type="text"], select, textarea {
+            width: 100%;
+            padding: 9px 12px;
+            box-sizing: border-box;
+            border: 1px solid #99aabb;
+            border-radius: 4px;
+            font-size: 14px;
+        }
+        textarea {
+            resize: vertical;
+            min-height: 80px;
+        }
+        input[type="text"]:focus, select:focus, textarea:focus {
+            outline: none;
+            border-color: #003366;
+        }
+        .btn-group {
+            margin-top: 15px;
+        }
+        button {
+            background-color: #003366;
+            color: white;
+            padding: 10px 18px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-size: 14px;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        button:hover {
+            background-color: #0055a5;
+        }
+        .btn-secondary {
+            background-color: #555555;
+        }
+        .btn-secondary:hover {
+            background-color: #777777;
+        }
+        #messageBox {
+            margin-top: 15px;
+            font-weight: bold;
+            font-size: 15px;
+        }
+        .result-card {
+            margin-top: 15px;
+            padding: 15px;
+            background: #f8fafc;
+            border: 1px solid #d0d7de;
+            border-radius: 6px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Citizen Complaint Registration</h2>
+    <p>Submit your grievance to the Municipal Corporation. Please provide accurate details below:</p>
+
+    <!-- Complaint Form -->
+    <form onsubmit="event.preventDefault(); registerComplaint();">
+        <div class="form-group">
+            <label for="citizenName">Citizen Name:</label>
+            <input type="text" id="citizenName" placeholder="e.g. John Doe">
+        </div>
+
+        <div class="form-group">
+            <label for="mobileNumber">Mobile Number (10 Digits):</label>
+            <input type="text" id="mobileNumber" placeholder="e.g. 9876543210" maxlength="10">
+        </div>
+
+        <div class="form-group">
+            <label for="complaintCategory">Complaint Category:</label>
+            <select id="complaintCategory">
+                <option value="">-- Select Category --</option>
+                <option value="Road Damage">Road Damage</option>
+                <option value="Garbage">Garbage</option>
+                <option value="Drainage">Drainage</option>
+                <option value="Street Light">Street Light</option>
+                <option value="Other">Other</option>
+            </select>
+        </div>
+
+        <div class="form-group">
+            <label for="complaintDescription">Complaint Description:</label>
+            <textarea id="complaintDescription" placeholder="Describe the issue in detail..."></textarea>
+        </div>
+
+        <div class="btn-group">
+            <button type="submit">Submit Complaint</button>
+            <button type="button" class="btn-secondary" onclick="viewSavedComplaint()">View Saved Complaint</button>
+        </div>
+    </form>
+
+    <!-- Message notification box -->
+    <div id="messageBox"></div>
+
+    <!-- Complaint output details -->
+    <div id="complaintOutput"></div>
+</div>
+
+<script>
+// 1. Complaint Categories
+var complaintCategories = [
+    "Road Damage",
+    "Garbage",
+    "Drainage",
+    "Street Light",
+    "Other"
+];
+
+// 2. Process entered citizen name and complaint text by removing unnecessary spaces and displaying name in proper format
+function formatName(name) {
+    var trimmed = name.trim().replace(/\s+/g, " ");
+    var words = trimmed.split(" ");
+    for (var i = 0; i < words.length; i++) {
+        if (words[i].length > 0) {
+            words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1).toLowerCase();
+        }
+    }
+    return words.join(" ");
+}
+
+function formatText(text) {
+    return text.trim().replace(/\s+/g, " ");
+}
+
+// 3. Check entered details, generate Complaint ID, record current date, save in browser, and handle errors
+function registerComplaint() {
+    var messageBox = document.getElementById("messageBox");
+    var outputBox = document.getElementById("complaintOutput");
+
+    // Handle a simple error during complaint processing and display a suitable message instead of stopping the webpage
+    try {
+        var rawName = document.getElementById("citizenName").value;
+        var rawMobile = document.getElementById("mobileNumber").value;
+        var category = document.getElementById("complaintCategory").value;
+        var rawDesc = document.getElementById("complaintDescription").value;
+
+        // Process name and text
+        var citizenName = formatName(rawName);
+        var description = formatText(rawDesc);
+        var mobile = rawMobile.trim();
+
+        // Check entered details before accepting complaint
+        if (!citizenName) {
+            throw new Error("Citizen Name is required.");
+        }
+        if (!mobile || !/^[6-9]\d{9}$/.test(mobile)) {
+            throw new Error("Please enter a valid 10-digit mobile number starting with 6-9.");
+        }
+        if (!category) {
+            throw new Error("Please select a complaint category.");
+        }
+        if (!description || description.length < 5) {
+            throw new Error("Complaint description must be at least 5 characters long.");
+        }
+
+        // Generate a simple Complaint ID automatically after successful registration
+        var complaintId = "CMP" + Math.floor(100000 + Math.random() * 900000);
+
+        // Record and display the current date along with the complaint
+        var currentDate = new Date().toLocaleDateString();
+
+        // Save the citizen’s name, Complaint ID and complaint category in the browser
+        localStorage.setItem("citizenName", citizenName);
+        localStorage.setItem("complaintId", complaintId);
+        localStorage.setItem("complaintCategory", category);
+        localStorage.setItem("mobileNumber", mobile);
+        localStorage.setItem("complaintDate", currentDate);
+        localStorage.setItem("complaintDescription", description);
+
+        // Display suitable message and registered details inside the webpage
+        messageBox.style.color = "green";
+        messageBox.innerHTML = "&#10004; Complaint registered successfully!";
+
+        var resultHtml = "<div class='result-card'>" +
+            "<h3>Complaint Registration Details</h3>" +
+            "<p><b>Complaint ID:</b> <span style='color:#003366; font-weight:bold;'>" + complaintId + "</span></p>" +
+            "<p><b>Date:</b> " + currentDate + "</p>" +
+            "<p><b>Citizen Name:</b> " + citizenName + "</p>" +
+            "<p><b>Mobile Number:</b> " + mobile + "</p>" +
+            "<p><b>Category:</b> " + category + "</p>" +
+            "<p><b>Description:</b> " + description + "</p>" +
+            "</div>";
+
+        outputBox.innerHTML = resultHtml;
+
+    } catch (error) {
+        // Display a suitable message instead of stopping the webpage
+        messageBox.style.color = "#cc0000";
+        messageBox.innerHTML = "&#9888; Error: " + error.message;
+        outputBox.innerHTML = "";
+    }
+}
+
+// 4. Provide a View Saved Complaint option to retrieve and display previously stored complaint information
+function viewSavedComplaint() {
+    var messageBox = document.getElementById("messageBox");
+    var outputBox = document.getElementById("complaintOutput");
+
+    try {
+        var savedId = localStorage.getItem("complaintId");
+        var savedName = localStorage.getItem("citizenName");
+        var savedCategory = localStorage.getItem("complaintCategory");
+        var savedDate = localStorage.getItem("complaintDate");
+        var savedDesc = localStorage.getItem("complaintDescription");
+
+        if (!savedId || !savedName) {
+            throw new Error("No saved complaint found in the browser storage.");
+        }
+
+        messageBox.style.color = "#0055a5";
+        messageBox.innerHTML = "&#8505; Retrieved saved complaint from browser storage.";
+
+        var savedHtml = "<div class='result-card'>" +
+            "<h3>Previously Saved Complaint</h3>" +
+            "<p><b>Complaint ID:</b> <span style='color:#003366; font-weight:bold;'>" + savedId + "</span></p>" +
+            "<p><b>Date:</b> " + (savedDate || "N/A") + "</p>" +
+            "<p><b>Citizen Name:</b> " + savedName + "</p>" +
+            "<p><b>Category:</b> " + savedCategory + "</p>" +
+            "<p><b>Description:</b> " + (savedDesc || "N/A") + "</p>" +
+            "</div>";
+
+        outputBox.innerHTML = savedHtml;
+
+    } catch (error) {
+        messageBox.style.color = "#cc0000";
+        messageBox.innerHTML = "&#9888; Error: " + error.message;
+        outputBox.innerHTML = "";
+    }
+}
+</script>
+
+</body>
+</html>

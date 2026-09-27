@@ -1,0 +1,126 @@
+// 1. Complaint Categories
+var complaintCategories = [
+    "Road Damage",
+    "Garbage",
+    "Drainage",
+    "Street Light",
+    "Other"
+];
+
+// 2. Process entered citizen name and complaint text by removing unnecessary spaces and displaying name in proper format
+function formatName(name) {
+    var trimmed = name.trim().replace(/\s+/g, " ");
+    var words = trimmed.split(" ");
+    for (var i = 0; i < words.length; i++) {
+        if (words[i].length > 0) {
+            words[i] = words[i].charAt(0).toUpperCase() + words[i].slice(1).toLowerCase();
+        }
+    }
+    return words.join(" ");
+}
+
+function formatText(text) {
+    return text.trim().replace(/\s+/g, " ");
+}
+
+// 3. Check entered details, generate Complaint ID, record current date, save in browser, and handle errors
+function registerComplaint() {
+    var messageBox = document.getElementById("messageBox");
+    var outputBox = document.getElementById("complaintOutput");
+
+    // Handle a simple error during complaint processing and display a suitable message instead of stopping the webpage
+    try {
+        var rawName = document.getElementById("citizenName").value;
+        var rawMobile = document.getElementById("mobileNumber").value;
+        var category = document.getElementById("complaintCategory").value;
+        var rawDesc = document.getElementById("complaintDescription").value;
+
+        // Process name and text
+        var citizenName = formatName(rawName);
+        var description = formatText(rawDesc);
+        var mobile = rawMobile.trim();
+
+        // Check entered details before accepting complaint
+        if (!citizenName) {
+            throw new Error("Citizen Name is required.");
+        }
+        if (!mobile || !/^[6-9]\d{9}$/.test(mobile)) {
+            throw new Error("Please enter a valid 10-digit mobile number.");
+        }
+        if (!category) {
+            throw new Error("Please select a complaint category.");
+        }
+        if (!description || description.length < 5) {
+            throw new Error("Complaint description must be at least 5 characters long.");
+        }
+
+        // Generate a simple Complaint ID automatically after successful registration
+        var complaintId = "CMP" + Math.floor(100000 + Math.random() * 900000);
+
+        // Record and display the current date along with the complaint
+        var currentDate = new Date().toLocaleDateString();
+
+        // Save the citizen’s name, Complaint ID and complaint category in the browser
+        localStorage.setItem("citizenName", citizenName);
+        localStorage.setItem("complaintId", complaintId);
+        localStorage.setItem("complaintCategory", category);
+        localStorage.setItem("mobileNumber", mobile);
+        localStorage.setItem("complaintDate", currentDate);
+        localStorage.setItem("complaintDescription", description);
+
+        // Display suitable message and registered details inside the webpage
+        messageBox.style.color = "green";
+        messageBox.innerHTML = "Complaint registered successfully!";
+
+        var resultHtml = "<h3>Complaint Registration Details:</h3>" +
+            "<p><b>Complaint ID:</b> " + complaintId + "</p>" +
+            "<p><b>Date:</b> " + currentDate + "</p>" +
+            "<p><b>Citizen Name:</b> " + citizenName + "</p>" +
+            "<p><b>Mobile Number:</b> " + mobile + "</p>" +
+            "<p><b>Category:</b> " + category + "</p>" +
+            "<p><b>Description:</b> " + description + "</p>";
+
+        outputBox.innerHTML = resultHtml;
+
+    } catch (error) {
+        // Display a suitable message instead of stopping the webpage
+        messageBox.style.color = "red";
+        messageBox.innerHTML = "Error: " + error.message;
+        outputBox.innerHTML = "";
+    }
+}
+
+// 4. Provide a View Saved Complaint option to retrieve and display previously stored complaint information
+function viewSavedComplaint() {
+    var messageBox = document.getElementById("messageBox");
+    var outputBox = document.getElementById("complaintOutput");
+
+    try {
+        var savedId = localStorage.getItem("complaintId");
+        var savedName = localStorage.getItem("citizenName");
+        var savedCategory = localStorage.getItem("complaintCategory");
+        var savedDate = localStorage.getItem("complaintDate");
+        var savedDesc = localStorage.getItem("complaintDescription");
+
+        if (!savedId || !savedName) {
+            throw new Error("No saved complaint found in the browser.");
+        }
+
+        messageBox.style.color = "green";
+        messageBox.innerHTML = "Retrieved saved complaint from browser storage.";
+
+        var savedHtml = "<h3>Previously Saved Complaint:</h3>" +
+            "<p><b>Complaint ID:</b> " + savedId + "</p>" +
+            "<p><b>Date:</b> " + (savedDate || "N/A") + "</p>" +
+            "<p><b>Citizen Name:</b> " + savedName + "</p>" +
+            "<p><b>Category:</b> " + savedCategory + "</p>" +
+            "<p><b>Description:</b> " + (savedDesc || "N/A") + "</p>";
+
+        outputBox.innerHTML = savedHtml;
+
+    } catch (error) {
+        messageBox.style.color = "red";
+        messageBox.innerHTML = "Error: " + error.message;
+        outputBox.innerHTML = "";
+    }
+}
